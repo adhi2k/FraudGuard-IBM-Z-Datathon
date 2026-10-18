@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+*.db
+*.log
+*.pem
+.env
+*.before-history
+.pytest_cache/

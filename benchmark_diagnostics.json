@@ -1,0 +1,941 @@
+{
+  "config": {
+    "edges": 240,
+    "accounts": 80,
+    "seeds": 3,
+    "k": 3,
+    "lambda_count": 250.0,
+    "lambda_value": 0.03,
+    "candidate_limit": 80,
+    "lambda_sweep": false,
+    "multi_lambda_sweep": true,
+    "compare_pruning": false,
+    "lambda_count_grid": "0,100,1000,10000",
+    "lambda_value_grid": "0,0.03,0.1,1",
+    "pruning_edge_counts": "300,600,1200"
+  },
+  "warning": "synthetic results only; not real-world fraud-prevention evidence",
+  "summary": {
+    "degree_centrality": {
+      "fraud_flow_contained": {
+        "mean": 29.455,
+        "sd": 35.919
+      },
+      "legitimate_edges_held": {
+        "mean": 3.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 6314.647,
+        "sd": 1976.052
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "greedy_estimated_pruned": {
+      "fraud_flow_contained": {
+        "mean": 7364.735,
+        "sd": 2327.352
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 33.061,
+        "sd": 3.112
+      }
+    },
+    "greedy_oracle": {
+      "fraud_flow_contained": {
+        "mean": 8701.063,
+        "sd": 3197.2
+      },
+      "legitimate_edges_held": {
+        "mean": 0.667,
+        "sd": 0.471
+      },
+      "legitimate_value_held": {
+        "mean": 1375.27,
+        "sd": 1173.318
+      },
+      "runtime_ms": {
+        "mean": 867.673,
+        "sd": 38.755
+      }
+    },
+    "no_holds": {
+      "fraud_flow_contained": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "random": {
+      "fraud_flow_contained": {
+        "mean": 0.051,
+        "sd": 0.072
+      },
+      "legitimate_edges_held": {
+        "mean": 3.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 8641.487,
+        "sd": 2982.008
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "risk_ranked": {
+      "fraud_flow_contained": {
+        "mean": 792.702,
+        "sd": 1027.079
+      },
+      "legitimate_edges_held": {
+        "mean": 0.667,
+        "sd": 0.471
+      },
+      "legitimate_value_held": {
+        "mean": 1735.12,
+        "sd": 1233.159
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    }
+  },
+  "runs": [
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 6695.9357,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 6695.9357,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000063",
+        "E000128",
+        "E000259"
+      ],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 6695.9357,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 4436.9,
+      "objective_value": 7579.0427,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000074",
+        "E000168",
+        "E000182"
+      ],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 6642.9813,
+      "fraud_flow_contained": 52.9544,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 6642.9813,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000045",
+        "E000066",
+        "E000113"
+      ],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 6695.9357,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 3929.4,
+      "objective_value": 7563.8177,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000241",
+        "E000243",
+        "E000245"
+      ],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 93.5282,
+      "fraud_flow_contained": 6602.4075,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 321.8971,
+      "runtime_ms": 33.20995300600771,
+      "rounds": 3,
+      "candidate_count": 94,
+      "estimated_objective_value": 321.8971,
+      "seed": 100
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000182",
+        "E000240",
+        "E000242"
+      ],
+      "baseline_cashout_flow": 6695.9357,
+      "remaining_cashout_flow": 40.5738,
+      "fraud_flow_contained": 6655.3619,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 40.5738,
+      "runtime_ms": 828.3261049946304,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": 3845.1935,
+      "seed": 100
+    },
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 6231.8558,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 6231.8558,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000178",
+        "E000215",
+        "E000227"
+      ],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 6231.8558,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 11026.0,
+      "objective_value": 7312.6358,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000071",
+        "E000082",
+        "E000255"
+      ],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 6151.8325,
+      "fraud_flow_contained": 80.0233,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 2450.89,
+      "objective_value": 6475.3592,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000152",
+        "E000169",
+        "E000255"
+      ],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 6151.8325,
+      "fraud_flow_contained": 80.0233,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 8768.27,
+      "objective_value": 7164.8806,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000240",
+        "E000242",
+        "E000244"
+      ],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 1258.86,
+      "fraud_flow_contained": 4972.9958,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 1075.494,
+      "runtime_ms": 29.176983996876515,
+      "rounds": 3,
+      "candidate_count": 94,
+      "estimated_objective_value": 1075.494,
+      "seed": 101
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000154",
+        "E000240",
+        "E000242"
+      ],
+      "baseline_cashout_flow": 6231.8558,
+      "remaining_cashout_flow": 0.0,
+      "fraud_flow_contained": 6231.8558,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 1258.86,
+      "objective_value": 287.7658,
+      "runtime_ms": 854.3031760054873,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": 1460.655,
+      "seed": 101
+    },
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 13403.7842,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 13403.7842,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000066",
+        "E000208",
+        "E000214"
+      ],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 13403.6306,
+      "fraud_flow_contained": 0.1536,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 10461.56,
+      "objective_value": 14467.4774,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000114",
+        "E000244",
+        "E000258"
+      ],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 11158.6569,
+      "fraud_flow_contained": 2245.1273,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 2754.47,
+      "objective_value": 11491.291,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000032",
+        "E000132",
+        "E000169"
+      ],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 13395.4415,
+      "fraud_flow_contained": 8.3427,
+      "legitimate_edges_held": 3,
+      "legitimate_value_held": 6246.27,
+      "objective_value": 14332.8296,
+      "runtime_ms": 0.0,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000242",
+        "E000244"
+      ],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 2884.9816,
+      "fraud_flow_contained": 10518.8026,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 897.0066,
+      "runtime_ms": 36.796556996705476,
+      "rounds": 2,
+      "candidate_count": 98,
+      "estimated_objective_value": 897.0066,
+      "seed": 102
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000194",
+        "E000242",
+        "E000245"
+      ],
+      "baseline_cashout_flow": 13403.7842,
+      "remaining_cashout_flow": 187.8141,
+      "fraud_flow_contained": 13215.9701,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 2866.95,
+      "objective_value": 523.8226,
+      "runtime_ms": 920.3889279961004,
+      "rounds": 3,
+      "candidate_count": 266,
+      "estimated_objective_value": 1192.48,
+      "seed": 102
+    }
+  ],
+  "multi_seed_lambda_sweep": [
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13227.1927,
+        "sd": 5343.2229
+      },
+      "legitimate_edges_held": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "legitimate_value_held": {
+        "mean": 348.52,
+        "sd": 492.8817
+      },
+      "estimated_objective": {
+        "mean": 328.9793,
+        "sd": 224.3305
+      },
+      "held_edge_count": {
+        "mean": 3,
+        "sd": 0.0
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.4046,
+        "sd": 3.2052
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "legitimate_value_held": {
+        "mean": 348.52,
+        "sd": 492.8817
+      },
+      "estimated_objective": {
+        "mean": 565.441,
+        "sd": 297.6631
+      },
+      "held_edge_count": {
+        "mean": 3,
+        "sd": 0.0
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.3787,
+        "sd": 3.2999
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 1090.9459,
+        "sd": 488.8681
+      },
+      "held_edge_count": {
+        "mean": 3,
+        "sd": 0.0
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.1425,
+        "sd": 3.0048
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 1.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 2600.0,
+        "sd": 3676.9553
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3307.17,
+        "sd": 806.3469
+      },
+      "held_edge_count": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 2,
+      "runtime_ms": {
+        "mean": 17.3618,
+        "sd": 4.1951
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 418.1783,
+        "sd": 236.4399
+      },
+      "held_edge_count": {
+        "mean": 2.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.2694,
+        "sd": 3.2528
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 649.5642,
+        "sd": 308.8523
+      },
+      "held_edge_count": {
+        "mean": 2.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.224,
+        "sd": 3.0927
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 1169.5637,
+        "sd": 501.1328
+      },
+      "held_edge_count": {
+        "mean": 2.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.2232,
+        "sd": 3.117
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 1.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 2600.0,
+        "sd": 3676.9553
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3311.7167,
+        "sd": 803.232
+      },
+      "held_edge_count": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 2,
+      "runtime_ms": {
+        "mean": 17.4345,
+        "sd": 4.1814
+      }
+    },
+    {
+      "lambda_count": 1000.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 1109.5883,
+        "sd": 317.4386
+      },
+      "held_edge_count": {
+        "mean": 2.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.1876,
+        "sd": 3.0858
+      }
+    },
+    {
+      "lambda_count": 1000.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 12748.5938,
+        "sd": 5907.5789
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 1340.9742,
+        "sd": 419.6996
+      },
+      "held_edge_count": {
+        "mean": 2.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 33.0337,
+        "sd": 3.0033
+      }
+    },
+    {
+      "lambda_count": 1000.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 11117.603,
+        "sd": 3867.037
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 1793.5767,
+        "sd": 549.401
+      },
+      "held_edge_count": {
+        "mean": 2.3333,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 2,
+      "runtime_ms": {
+        "mean": 33.3134,
+        "sd": 3.0919
+      }
+    },
+    {
+      "lambda_count": 1000.0,
+      "lambda_value": 1.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 2600.0,
+        "sd": 3676.9553
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3352.6367,
+        "sd": 777.0323
+      },
+      "held_edge_count": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 2,
+      "runtime_ms": {
+        "mean": 17.408,
+        "sd": 4.2003
+      }
+    },
+    {
+      "lambda_count": 10000.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 5200.3836,
+        "sd": 3677.2265
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3235.5845,
+        "sd": 612.285
+      },
+      "held_edge_count": {
+        "mean": 0.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 20.06,
+        "sd": 3.5342
+      }
+    },
+    {
+      "lambda_count": 10000.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 5200.3836,
+        "sd": 3677.2265
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3270.6005,
+        "sd": 637.3937
+      },
+      "held_edge_count": {
+        "mean": 0.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 20.1515,
+        "sd": 3.6125
+      }
+    },
+    {
+      "lambda_count": 10000.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 5200.3836,
+        "sd": 3677.2265
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3352.3045,
+        "sd": 696.8008
+      },
+      "held_edge_count": {
+        "mean": 0.6667,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 3,
+      "runtime_ms": {
+        "mean": 20.0722,
+        "sd": 3.5559
+      }
+    },
+    {
+      "lambda_count": 10000.0,
+      "lambda_value": 1.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 2600.0,
+        "sd": 3676.9553
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "estimated_objective": {
+        "mean": 3761.8367,
+        "sd": 747.0825
+      },
+      "held_edge_count": {
+        "mean": 0.3333,
+        "sd": 0.4714
+      },
+      "unique_hold_sets": 2,
+      "runtime_ms": {
+        "mean": 17.5022,
+        "sd": 4.2789
+      }
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FraudGuard · Real-time risk</title>
+<style>
+:root{--bg:#0e1420;--card:#171f2f;--tx:#e8edf5;--mut:#8b97ab;--ok:#2fbf71;--warn:#f0b429;--bad:#ef4b4b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,Segoe UI,sans-serif}
+header{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #243049}
+h1{font-size:20px;margin:0}small{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;padding:16px 24px}
+.card{background:var(--card);border-radius:12px;padding:14px}.card b{display:block;font-size:26px;margin-top:4px}
+.main{display:grid;grid-template-columns:2fr 1fr;gap:12px;padding:0 24px 24px}
+@media(max-width:800px){.main{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:7px 6px;border-bottom:1px solid #243049}
+.tag{padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;color:#0b1020}
+.approve{background:var(--ok)}.verify{background:var(--warn)}.block{background:var(--bad)}
+#alerts div{padding:10px;border-left:4px solid var(--bad);background:#1d2638;margin-bottom:8px;border-radius:6px;font-size:13px}
+#alerts div.v{border-color:var(--warn)}
+</style></head><body>
+<header><h1>🛡️ FraudGuard <small>real-time transaction risk · IBM LinuxONE</small></h1><small id="conn">connecting…</small></header>
+<div class="grid">
+<div class="card"><small>Scored</small><b id="total">0</b></div>
+<div class="card"><small>Verify</small><b id="verify" style="color:var(--warn)">0</b></div>
+<div class="card"><small>Blocked</small><b id="block" style="color:var(--bad)">0</b></div>
+<div class="card"><small>Loss prevented (₹)</small><b id="prev">0</b></div>
+<div class="card"><small>Latency p50 / p99 (ms)</small><b id="lat">–</b></div>
+</div>
+<div class="main">
+<div class="card"><small>Live transaction feed</small>
+<table><thead><tr><th>User</th><th>Type</th><th>Amount</th><th>Risk</th><th>Action</th><th>ms</th></tr></thead><tbody id="feed"></tbody></table></div>
+<div class="card"><small>Alert queue (with reasons)</small><div id="alerts" style="margin-top:10px"></div></div>
+</div>
+<script>
+const $=id=>document.getElementById(id);let n=0,v=0,b=0,prev=0,lats=[];
+function renderTransaction(r, historical=false) {
+ if(!historical){n++;lats.push(Number(r.latency_ms)||0);lats=lats.slice(-500);}
+ if(r.action==='verify' && !historical)v++;
+ if(r.action==='block' && !historical){b++;prev+=Number(r.amount)||0;}
+ $('total').textContent=n;$('verify').textContent=v;$('block').textContent=b;
+ $('prev').textContent=Math.round(prev).toLocaleString('en-IN');
+ const s=[...lats].sort((x,y)=>x-y);
+ const p50=s[Math.floor((s.length-1)*0.50)] ?? 0;
+ const p99=s[Math.ceil(s.length*0.99)-1] ?? 0;
+ $('lat').textContent=s.length?p50.toFixed(1)+' / '+p99.toFixed(1):'–';
+ const tr=document.createElement('tr');
+ tr.innerHTML=`<td>${r.user}</td><td>${r.type}</td><td>${Math.round(r.amount).toLocaleString('en-IN')}</td><td>${(r.risk*100).toFixed(1)}%</td><td><span class="tag ${r.action}">${r.action}</span></td><td>${r.latency_ms ?? '—'}</td>`;
+ $('feed').prepend(tr);while($('feed').children.length>14)$('feed').lastChild.remove();
+ if(r.action!=='approve'){
+  const d=document.createElement('div');d.className=r.action==='verify'?'v':'';
+  const why=Array.isArray(r.reasons)?r.reasons.join(' · '):'';
+  d.innerHTML=`<b>${r.action.toUpperCase()}</b> · ${r.user} · ₹${Math.round(r.amount).toLocaleString('en-IN')} · risk ${(r.risk*100).toFixed(0)}%<br><small>${why}</small>`;
+  $('alerts').prepend(d);while($('alerts').children.length>8)$('alerts').lastChild.remove();
+ }
+}
+async function loadHistory(){
+ try {
+  const [historyResponse, statsResponse]=await Promise.all([fetch('/history?limit=100'),fetch('/stats')]);
+  if(!historyResponse.ok || !statsResponse.ok)throw new Error('History API unavailable');
+  const history=await historyResponse.json();
+  const stats=await statsResponse.json();
+  n=stats.total||0;v=stats.verify||0;b=stats.block||0;prev=stats.prevented_amount||0;
+  lats=Array.isArray(stats.lat)?stats.lat:[];
+  $('total').textContent=n;$('verify').textContent=v;$('block').textContent=b;
+  $('prev').textContent=Math.round(prev).toLocaleString('en-IN');
+  const sorted=[...lats].sort((x,y)=>x-y);
+  if(sorted.length){
+   $('lat').textContent=sorted[Math.floor((sorted.length-1)*.5)].toFixed(1)+' / '+sorted[Math.ceil(sorted.length*.99)-1].toFixed(1);
+  }
+  history.slice().reverse().forEach(r=>renderTransaction(r,true));
+ } catch(err){console.error('Could not restore dashboard history:',err);}
+}
+loadHistory();
+
+const ws=new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host+'/ws');
+ws.onopen=()=>{$('conn').textContent='● live';$('conn').style.color='#2fbf71';setInterval(()=>{if(ws.readyState===WebSocket.OPEN)ws.send('ping')},15000)};
+ws.onclose=()=>{$('conn').textContent='disconnected'};
+ws.onmessage=e=>{const r=JSON.parse(e.data);renderTransaction(r,false);
+ if(r.action==='verify')v++;if(r.action==='block'){b++;prev+=r.amount}
+ $('total').textContent=n;$('verify').textContent=v;$('block').textContent=b;$('prev').textContent=Math.round(prev).toLocaleString('en-IN');
+ const s=[...lats].sort((x,y)=>x-y);
+  const p50=s[Math.floor((s.length-1)*0.50)] ?? 0;
+  const p99=s[Math.ceil(s.length*0.99)-1] ?? 0;
+  $('lat').textContent=p50.toFixed(1)+' / '+p99.toFixed(1);
+ const tr=document.createElement('tr');
+ tr.innerHTML=`<td>${r.user}</td><td>${r.type}</td><td>${Math.round(r.amount).toLocaleString('en-IN')}</td><td>${(r.risk*100).toFixed(1)}%</td><td><span class="tag ${r.action}">${r.action}</span></td><td>${r.latency_ms}</td>`;
+ $('feed').prepend(tr);while($('feed').children.length>14)$('feed').lastChild.remove();
+ if(r.action!=='approve'){const d=document.createElement('div');d.className=r.action==='verify'?'v':'';
+  d.innerHTML=`<b>${r.action.toUpperCase()}</b> · ${r.user} · ₹${Math.round(r.amount).toLocaleString('en-IN')} · risk ${(r.risk*100).toFixed(0)}%<br><small>${r.reasons.join(' · ')}</small>`;
+  $('alerts').prepend(d);while($('alerts').children.length>8)$('alerts').lastChild.remove();}
+};
+</script></body></html>

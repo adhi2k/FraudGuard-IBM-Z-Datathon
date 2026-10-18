@@ -1,0 +1,781 @@
+{
+  "config": {
+    "edges": 60,
+    "accounts": 40,
+    "seeds": 3,
+    "k": 2,
+    "lambda_count": 250.0,
+    "lambda_value": 0.03,
+    "candidate_limit": 30,
+    "lambda_sweep": false,
+    "multi_lambda_sweep": true,
+    "compare_pruning": false,
+    "lambda_count_grid": "0,100,250,500",
+    "lambda_value_grid": "0,0.01,0.03,0.1",
+    "pruning_edge_counts": "300,600,1200"
+  },
+  "warning": "synthetic results only; not real-world fraud-prevention evidence",
+  "summary": {
+    "degree_centrality": {
+      "fraud_flow_contained": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_edges_held": {
+        "mean": 1.333,
+        "sd": 0.943
+      },
+      "legitimate_value_held": {
+        "mean": 3137.593,
+        "sd": 2856.753
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "greedy_estimated_pruned": {
+      "fraud_flow_contained": {
+        "mean": 6674.807,
+        "sd": 6564.459
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 1.97,
+        "sd": 0.247
+      }
+    },
+    "greedy_oracle": {
+      "fraud_flow_contained": {
+        "mean": 8558.171,
+        "sd": 5206.089
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 28.334,
+        "sd": 8.175
+      }
+    },
+    "no_holds": {
+      "fraud_flow_contained": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "random": {
+      "fraud_flow_contained": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_edges_held": {
+        "mean": 2.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 4430.463,
+        "sd": 1528.699
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    },
+    "risk_ranked": {
+      "fraud_flow_contained": {
+        "mean": 4074.807,
+        "sd": 3193.918
+      },
+      "legitimate_edges_held": {
+        "mean": 0.667,
+        "sd": 0.471
+      },
+      "legitimate_value_held": {
+        "mean": 1276.253,
+        "sd": 1030.513
+      },
+      "runtime_ms": {
+        "mean": 0.0,
+        "sd": 0.0
+      }
+    }
+  },
+  "runs": [
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 6898.58,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 6898.58,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000035",
+        "E000040"
+      ],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 6898.58,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 2,
+      "legitimate_value_held": 3022.24,
+      "objective_value": 7489.2472,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000055",
+        "E000060"
+      ],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 2474.16,
+      "fraud_flow_contained": 4424.42,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 1305.02,
+      "objective_value": 2763.3106,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000052",
+        "E000069"
+      ],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 6898.58,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 2,
+      "legitimate_value_held": 2502.26,
+      "objective_value": 7473.6478,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 100
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000060",
+        "E000064"
+      ],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 2474.16,
+      "fraud_flow_contained": 4424.42,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 1273.9739,
+      "runtime_ms": 2.084464000290609,
+      "rounds": 2,
+      "candidate_count": 32,
+      "estimated_objective_value": 1273.9739,
+      "seed": 100
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000061"
+      ],
+      "baseline_cashout_flow": 6898.58,
+      "remaining_cashout_flow": 0.0,
+      "fraud_flow_contained": 6898.58,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 0.0,
+      "runtime_ms": 24.726510000164126,
+      "rounds": 1,
+      "candidate_count": 71,
+      "estimated_objective_value": 3828.872,
+      "seed": 100
+    },
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 3175.9325,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 3175.9325,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000022",
+        "E000058"
+      ],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 3175.9325,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 2,
+      "legitimate_value_held": 6555.16,
+      "objective_value": 3872.5873,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000006",
+        "E000068"
+      ],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 3175.9325,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 1,
+      "legitimate_value_held": 2523.74,
+      "objective_value": 3501.6447,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000002",
+        "E000007"
+      ],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 3175.9325,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 2,
+      "legitimate_value_held": 6910.52,
+      "objective_value": 3883.2481,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 101
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000063",
+        "E000064"
+      ],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 3175.9325,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 753.6981,
+      "runtime_ms": 1.6264640003100794,
+      "rounds": 2,
+      "candidate_count": 32,
+      "estimated_objective_value": 753.6981,
+      "seed": 101
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000060"
+      ],
+      "baseline_cashout_flow": 3175.9325,
+      "remaining_cashout_flow": 0.0,
+      "fraud_flow_contained": 3175.9325,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 0.0,
+      "runtime_ms": 20.626661999813223,
+      "rounds": 1,
+      "candidate_count": 71,
+      "estimated_objective_value": 3852.8157,
+      "seed": 101
+    },
+    {
+      "strategy": "no_holds",
+      "held_edge_ids": [],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 15600.0,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 15600.0,
+      "runtime_ms": 0.0,
+      "rounds": 0,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "random",
+      "held_edge_ids": [
+        "E000023",
+        "E000067"
+      ],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 15600.0,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 2,
+      "legitimate_value_held": 3713.99,
+      "objective_value": 16211.4197,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "risk_ranked",
+      "held_edge_ids": [
+        "E000003",
+        "E000060"
+      ],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 7800.0,
+      "fraud_flow_contained": 7800.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 7800.0,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "degree_centrality",
+      "held_edge_ids": [
+        "E000028",
+        "E000030"
+      ],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 15600.0,
+      "fraud_flow_contained": 0.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 15600.0,
+      "runtime_ms": 0.0,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": null,
+      "seed": 102
+    },
+    {
+      "strategy": "greedy_estimated_pruned",
+      "held_edge_ids": [
+        "E000060",
+        "E000064"
+      ],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 0.0,
+      "fraud_flow_contained": 15600.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 946.8416,
+      "runtime_ms": 2.1991590001562145,
+      "rounds": 2,
+      "candidate_count": 35,
+      "estimated_objective_value": 946.8416,
+      "seed": 102
+    },
+    {
+      "strategy": "greedy_oracle",
+      "held_edge_ids": [
+        "E000060",
+        "E000064"
+      ],
+      "baseline_cashout_flow": 15600.0,
+      "remaining_cashout_flow": 0.0,
+      "fraud_flow_contained": 15600.0,
+      "legitimate_edges_held": 0,
+      "legitimate_value_held": 0,
+      "objective_value": 0.0,
+      "runtime_ms": 39.650040000196896,
+      "rounds": 2,
+      "candidate_count": 71,
+      "estimated_objective_value": 946.8416,
+      "seed": 102
+    }
+  ],
+  "multi_seed_lambda_sweep": [
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.2133,
+        "sd": 0.3576
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.01,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 1.972,
+        "sd": 0.2638
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.145,
+        "sd": 0.2523
+      }
+    },
+    {
+      "lambda_count": 0.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.251,
+        "sd": 0.1844
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.0545,
+        "sd": 0.1616
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.01,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 1.8293,
+        "sd": 0.1607
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.3961,
+        "sd": 0.2994
+      }
+    },
+    {
+      "lambda_count": 100.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.8571,
+        "sd": 0.4474
+      }
+    },
+    {
+      "lambda_count": 250.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.4803,
+        "sd": 0.5056
+      }
+    },
+    {
+      "lambda_count": 250.0,
+      "lambda_value": 0.01,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 3.0018,
+        "sd": 1.1881
+      }
+    },
+    {
+      "lambda_count": 250.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.5173,
+        "sd": 0.3454
+      }
+    },
+    {
+      "lambda_count": 250.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.1356,
+        "sd": 0.2928
+      }
+    },
+    {
+      "lambda_count": 500.0,
+      "lambda_value": 0.0,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.2189,
+        "sd": 0.2664
+      }
+    },
+    {
+      "lambda_count": 500.0,
+      "lambda_value": 0.01,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.0201,
+        "sd": 0.0883
+      }
+    },
+    {
+      "lambda_count": 500.0,
+      "lambda_value": 0.03,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 2.3604,
+        "sd": 0.3378
+      }
+    },
+    {
+      "lambda_count": 500.0,
+      "lambda_value": 0.1,
+      "seed_count": 3,
+      "contained_flow": {
+        "mean": 13644.7242,
+        "sd": 2704.0049
+      },
+      "legitimate_edges_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "legitimate_value_held": {
+        "mean": 0.0,
+        "sd": 0.0
+      },
+      "runtime_ms": {
+        "mean": 1.9323,
+        "sd": 0.1502
+      }
+    }
+  ]
+}
